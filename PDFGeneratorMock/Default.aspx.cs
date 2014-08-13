@@ -17,6 +17,9 @@ namespace PDFGeneratorMock
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Context.Response.Buffer = false;
+            Response.ContentType = @"application/pdf";
+
             byte[] bs = null;
 
             if (Context.Request["mode"] == "dynamic")
@@ -42,9 +45,6 @@ namespace PDFGeneratorMock
             {
                 // 静的なPDFを返す
                 System.Threading.Thread.Sleep(5000);
-
-                Context.Response.Buffer = false;
-                Response.ContentType = @"application/pdf";
 
 
                 bs = Properties.Resources.SamplePdf;
